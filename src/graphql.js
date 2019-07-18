@@ -3,7 +3,7 @@ import {createHttpLink} from 'apollo-link-http';
 import {setContext} from 'apollo-link-context';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 
-const API_URL = 'https://backendblog-7pvzldquh.now.sh/';
+const API_URL = 'http://localhost:4000/';
 
 const HttpLink=createHttpLink({
     uri:API_URL
@@ -17,7 +17,7 @@ const authLink=setContext((_,{headers})=>{
         }
     }
 
-    // if(token) contex.headers['authorization']=`JWT ${token}`
+     if(token) contex.headers['authorization']=`JWT ${token}`
 
     return contex;
 

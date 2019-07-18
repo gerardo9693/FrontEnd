@@ -11,18 +11,20 @@ import imagen4 from '../images/bg_2.png';
 import imagen5 from '../images/pizza-1.jpg';
 import imagen6 from '../images/bg_3.jpg';
 
-const ALL_POST=gql`
-query ALLPOST{
-    listPosts{
+const ALL_COMIDA=gql`
+query ALLCOMIDA{
+    lstComida{
         _id,
-        title
+        cNombre,
+        cDescripcion,
+        cPrecio
     }
 }
 `;
 
 
 function Menu(){
-  const {data,loading,error}=useQuery(ALL_POST);
+  const {data,loading,error}=useQuery(ALL_COMIDA);
   if(error){
     return <h4>Error</h4>
 }else{
@@ -95,21 +97,21 @@ function Menu(){
         </div>
       </div></div></div></div><div className="owl-nav disabled"><button role="presentation" className="owl-prev"><span className="ion-md-arrow-back"></span></button><button role="presentation" className="owl-next"><span className="ion-chevron-right"></span></button></div><div className="owl-dots disabled"><button className="owl-dot active"><span></span></button></div></section>
        
-      <section class="ftco-section">
-    	<div class="container">
-    		<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section ftco-animate text-center fadeInUp ftco-animated">
-            <h2 class="mb-4">Nuestro Menu</h2>
+      <section className="ftco-section">
+    	<div className="container">
+    		<div className="row justify-content-center mb-5 pb-3">
+          <div className="col-md-7 heading-section ftco-animate text-center fadeInUp ftco-animated">
+            <h2 className="mb-4">Nuestro Menu</h2>
             <p>A veces, los sentimientos son difíciles de explicar, y qué sentimiento más fuerte que nuestro amor por la comida. Sin duda, hablar de gastronomía y alimentos levanta emociones muy fuertes y al tratar de explicarlas, ha habido ciertas personas que lo han dicho mejor que nadie. </p>
           </div>
         </div>
     	</div>
-    	<div class="container-wrap">
+    	<div className="container-wrap">
                     {
                         loading?<h4>Loading...</h4>
-                        : data.listPosts.map(post=>(
+                        : data.lstComida.map(post=>(
                           
-                            <PostPreview _id={post._id} title={post.title} key={post._id}/>
+                            <PostPreview _id={post._id} cNombre={post.cNombre} cDescripcion={post.cDescripcion} cPrecio={post.cPrecio} key={post._id}/>
                         ))
                     }
 

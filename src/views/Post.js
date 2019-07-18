@@ -4,12 +4,12 @@ import { useQuery } from 'react-apollo-hooks'
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-const SINGLEPOST = gql`
-	query SinglePost($id:ID!){
-		singlePost(id:$id){
-			title,
-			content,
-			cover_photo
+const SINGLECOMIDA = gql`
+	query SingleComida($id:ID!){
+		singleComida(id:$id){
+			cNombre,
+			cDescripcion,
+			cUrlImagen
 		}
 	}
 `;
@@ -19,14 +19,14 @@ const CREATE_POST = gql`
 	mutation CreatePost($data:createPostAuthor!){
 		createPost(data:$data){
 			_id,
-			title
+			cNombre
 		}
 	}
 `
 
 function Post({ match }) {
 	const { id } = match.params;
-	const { data, loading, error } = useQuery(SINGLEPOST, { variables: { id } })
+	const { data, loading, error } = useQuery(SINGLECOMIDA, { variables: { id } })
 
 
 
@@ -38,14 +38,14 @@ function Post({ match }) {
 						(
 							<>
 								<Navbar />
-								<Header cover={data.singlePost.cover_photo} />
+								<Header cover={data.singleComida.cUrlImagen} />
 								<article>
 									<div className="container">
 										<div className="row">
 											<div className="col-lg-8 col-md-10 mx-auto">
-												<h2>{data.singlePost.title}</h2>
+												<h2>{data.singleComida.cNombre}</h2>
 
-												<p>{data.singlePost.content}</p>
+												<p>{data.singleComida.cDescripcion}</p>
 											</div>
 										</div>
 									</div>
@@ -57,12 +57,12 @@ function Post({ match }) {
 
 												<div className="control-group">
 													<div className="fom-group floating-lable-form-group controls">
-														{/* <input value={data.singlePost.title}/>
-									<textarea name="content" 
+														{/* <input value={data.singleComida.cNombre}/>
+									<textarea name="cDescripcion" 
 											  placeholder="Content"
 											  value=""
 											  cols="60" 
-											  rows="10">{data.singlePost.title}</textarea>
+											  rows="10">{data.singleComida.cNombre}</textarea>
 								 */}
 														<FormGroup>
 															<Label >Restaurante</Label>

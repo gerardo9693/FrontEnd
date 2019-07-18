@@ -1,152 +1,82 @@
-//  import React from 'react';
-// import gql from 'graphql-tag';
-// import {useMutation} from 'react-apollo-hooks';
-// import Navbar from '../components/Navbar';
-// import useForm from '../hooks/userForm';
-// import Header from '../components/Header';
-// import Input from '../components/Input';
 
-
-// const LOGIN=gql`
-//     mutation LOGIN($email:String!,$password:String!){
-//         login(email:$email,password:$password){
-//             token
-//         }
-//     }
-// `
-
-// function Login({history}){
-//     const [sendLogin]=useMutation(LOGIN);
-
-//     const submitLogin=async(fields)=>{
-//         const mutation=await sendLogin({variables:{...fields}})
-//                                     .catch(e=>console.log(e))
-
-//         if(mutation){
-//             const {login}=mutation.data;
-
-//             localStorage.setItem('blogToken',login.token);
-
-//             history.push('/');
-//         }
-//     }
-
-//     const {inputs,hadleInputChange,hadleSubmit}= useForm(submitLogin);
-
-//     return (
-//         <>
-//         <Navbar/>
-//         <Header/>
-//         <main className="container">
-//             <section className="row">
-//                 <div className="col-lg-8 col-md-10 mx-auto">
-//                     <form onSubmit={hadleSubmit}>
-
-
-//                         <Input name="email"
-//                         label="email"
-//                         placeholder="email"
-//                         value={inputs.email}
-//                         type="email"
-//                         onChange={hadleInputChange}
-//                         required
-//                         />
-
-//                         <Input name="password"
-//                         label="password"
-//                         placeholder="password"
-//                         value={inputs.password}
-//                         type="password"
-//                         onChange={hadleInputChange}
-//                         required
-//                         />
-
-
-//                         <button type="submit" className="btn btn-primary">Send</button>
-//                     </form>
-//                 </div>
-//             </section>
-//         </main>
-//         </>
-//     )
-// }
-
-// export default Login;
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import Input from '../components/Input';
 import useForm from '../hooks/userForm';
 import { useMutation } from 'react-apollo-hooks';
 import gql from 'graphql-tag';
+import { Redirect } from 'react-router-dom';
 
 const LOGIN = gql`
-    mutation LOGIN($email:String!,$password:String!){
-        login(email:$email,password:$password){
+     mutation LOGIN($cCorreo:String!,$cContrasenia:String!){
+        Login(cCorreo:$cCorreo,cContrasenia:$cContrasenia){
             token
         }
     }
 `
 
 
-const Login = ({isOpen,history}) => {
+const Login = ({ isOpen,setShow }) => {
+    const [isLogged,setLogget]=useState(false);
+    const  [sendLogin] = useMutation(LOGIN);
+	const submitLogin = async(fields) =>{
+		const mutation = await sendLogin({variables:{...fields}})
+                                .catch( e => console.log(e))
+                                
+         console.log(fields);                       
+		if(mutation){
+			const login = mutation.data;
+            localStorage.setItem('blogToken',login.Login.token);
+            console.log("Se ha autentificado");
+            setLogget(true);
+            
+		}
+		
+    } 
+    
+	const {inputs,handleInputChange,handleSubmit} =  useForm(submitLogin);
+
+    //  isOpen = show!=null ? true : false;
 
 
-    const [sendLogin] = useMutation(LOGIN);
+    return isLogged ? <Redirect to="/"/> : (
 
-    const submitLogin = async (fields) => {
-        const mutation = await sendLogin({ variables: { ...fields } })
-            .catch(e => console.log(e))
-
-        if (mutation) {
-            const { login } = mutation.data;
-
-            localStorage.setItem('blogToken', login.token);
-
-            history.push('/');
-        }
-    }
-    const { inputs, hadleInputChange, hadleSubmit } = useForm(submitLogin);
-
-const [show,setShow]=useState(false);
-
-    return (
         <div>
             {/* <link
                 rel='stylesheet'
                 href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'
             /> */}
-            
+
             <Modal isOpen={isOpen} className="">
-                <ModalHeader style={{background:"black"}}>Iniciar Sesión</ModalHeader>
+                <ModalHeader style={{ background: "#1f1510" }}>Iniciar Sesión</ModalHeader>
                 <ModalBody>
-                    <form onSubmit={hadleSubmit}>
+                    <form onSubmit={handleSubmit}>
 
 
-                        <Input name="email"
-                            label="email"
-                            placeholder="email"
-                            value={inputs.email}
-                            type="email"
-                            onChange={hadleInputChange}
+                        <Input name="cCorreo"
+                            label="cCorreo"
+                            placeholder="cCorreo"
+                            value={inputs.cCorreo}
+                            type="cCorreo"
+                            onChange={handleInputChange}
                             required
                         />
 
-                        <Input name="password"
-                            label="password"
-                            placeholder="password"
-                            value={inputs.password}
-                            type="password"
-                            onChange={hadleInputChange}
+                        <Input name="cContrasenia"
+                            label="cContrasenia"
+                            placeholder="cContrasenia"
+                            value={inputs.cContrasenia}
+                            type="cContrasenia"
+                            onChange={handleInputChange}
                             required
                         />
-                        
+
                         <ModalFooter>
-                            <Button type="submit" color='primary' onClick="">Enviar</Button>{' '}
-                            <Button color='secondary' 
-                            onClick={e => {
-									isOpen=false;
-								}}
-                            
+                            <button type="submit" color='primary' >Enviar</button>
+                            <Button type="button" color='secondary'
+                                onClick={e => {
+                                    setShow(false);
+                                }}
                             >Cancelar</Button>
                         </ModalFooter>
                     </form>

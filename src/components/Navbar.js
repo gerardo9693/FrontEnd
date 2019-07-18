@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import Login from '../views/Login';
+import payload from '../utils/payload';
 
 function Navbar() {
 const [show,setShow]=useState(false);
@@ -21,12 +22,30 @@ const [show,setShow]=useState(false);
 							<li className="nav-item active"><Link to="/" className="nav-link">Inicio</Link></li>
 
 							<li className="nav-item"><Link to="/menu" className="nav-link">Menu</Link></li>
+							{
+            payload().isAuthenticated?(
+              <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Hola {payload().user.cCorreo}</Link>
+              </li>
+			  <li className="nav-item">
+                <Link className="nav-link" to="/logout">Logout</Link>
+              </li>
+              </>
+            ):(
+              <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/signup">Signup</Link>
+              </li>
+              </>
+            )
+          }
 							<li className="nav-item"><a href="services.html" className="nav-link">Servicios</a></li>
 							<li className="nav-item"><Link to="/about" className="nav-link">Acerca de</Link></li>
 							<li className="nav-item"><a href="contact.html" className="nav-link">Contacto</a></li>
 							<li className="nav-item"><button className="nav-link"
 								onClick={e => {
-									setShow(true);
+									setShow(!show);
 								}}			  
 								
 							>Login</button></li>
@@ -35,7 +54,7 @@ const [show,setShow]=useState(false);
 				</div>
 			</nav>
 			
-			<Login isOpen={show} />
+			<Login isOpen={show} setShow={setShow}/>
 
 		</>
 	)
