@@ -1,62 +1,26 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import {useQuery} from 'react-apollo-hooks';
 import Navbar from '../components/Navbar';
-import Header from '../components/Header'
-import PostPreview from '../components/PostPreview';
 import Footer from '../components/Footer';
-import image from '../images/bg_1.jpg';
 import images from '../images/bg_3.jpg';
-import imagen4 from '../images/bg_2.png';
-import imagen5 from '../images/bg_1.png';
 import about from '../images/Uber.jpg';
-import Login from '../views/Login';
 import {Link} from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-
 
 function Home(){
     return (
         <>
         <Navbar/>
-        <Header/>
 
         <section className="home-slider owl-carousel img owl-loaded owl-drag" style={{backgroundImage:`url(${images})`}}>
 
       <div className="owl-stage-outer">
         <div className="owl-stage" style={{transform: "translate3d(-2698px, 0px, 0px)", transition: "all 0s ease 0s", width: "9443px"}}><div className="owl-item cloned" style={{width: "1349px"}}><div className="slider-item">
           <div className="overlay"></div>
-          <div className="container">
-            <div className="row slider-text align-items-center" data-scrollax-parent="true">
-  
-              <div className="col-md-6 col-sm-12 order-md-last ftco-animate fadeInUp ftco-animated">
-                <span className="subheading">Crunchy</span>
-                <h1 className="mb-4">Italian Pizza</h1>
-                <p className="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">Order 2Now</a> <a href="#" className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
-              </div>
-              <div className="col-md-6 ftco-animate fadeInUp ftco-animated">
-                <img src={require("../images/bg_2.png")} className="comida img-fluid" alt=""/>
-              </div>
-  
-            </div>
-          </div>
+         
         </div>
         </div>
         <div className="owl-item cloned" style={{width: "1349px"}}><div className="slider-item" style={{backgroundImage:`url(${images})`}}>
           <div className="overlay"></div>
-          <div className="container">
-            <div className="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-  
-              <div className="col-md-7 col-sm-12 text-center ftco-animate fadeInUp ftco-animated">
-                <span className="subheading">Bienvenido</span>
-                <h1 className="mb-4">Ofecemos la mejor calidad de comida local</h1>
-                <p className="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">Ordena ahora</a> <a href="#" className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
-              </div>
-  
-            </div>
-          </div>
+          
         </div></div><div className="owl-item active" style={{width: "1349px"}}><div className="slider-item">
           <div className="overlay"></div>
           <div className="container">
@@ -72,73 +36,6 @@ function Home(){
               </div>
               <div className="col-md-6 ftco-animate fadeInUp ftco-animated">
                 <img src={require("../images/Cochinita.png")} className="img-fluid" alt=""/>
-              </div>
-  
-            </div>
-          </div>
-        </div></div><div className="owl-item" style={{width: "1349px"}}><div className="slider-item">
-          <div className="overlay"></div>
-          <div className="container">
-            <div className="row slider-text align-items-center" data-scrollax-parent="true">
-  
-              <div className="col-md-6 col-sm-12 order-md-last ftco-animate fadeInUp ftco-animated">
-                <span className="subheading">Crunchy</span>
-                <h1 className="mb-4">Italian Pizza</h1>
-                <p className="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
-              </div>
-              <div className="col-md-6 ftco-animate fadeInUp ftco-animated">
-                <img src="../images/bg_2.png" className="img-fluid" alt=""/>
-              </div>
-  
-            </div>
-          </div>
-        </div></div><div className="owl-item" style={{width: "1349px"}}><div className="slider-item" style={{backgroundImage:`url(${images})`}}>
-          <div className="overlay"></div>
-          <div className="container">
-            <div className="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-  
-              <div className="col-md-7 col-sm-12 text-center ftco-animate fadeInUp ftco-animated">
-                <span className="subheading">Bienvenido</span>
-                <h1 className="mb-4">Ofecemos la mejor calidad de comida local</h1>
-                <p className="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">Ordena ahora</a> <a href="#" className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
-              </div>
-  
-            </div>
-          </div>
-        </div></div><div className="owl-item cloned" style={{width: "1349px"}}><div className="slider-item">
-          <div className="overlay"></div>
-          <div className="container">
-            <div className="row slider-text align-items-center" data-scrollax-parent="true">
-  
-              <div className="col-md-6 col-sm-12 ftco-animate fadeInUp ftco-animated">
-                <span className="subheading">Delicious</span>
-                <h1 className="mb-4">Italian Cuizine</h1>
-                <p className="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
-                <img src="../images/bg_1.png" className="img-fluid" alt=""/>
-              
-              </div>
-              <div className="col-md-6 ftco-animate fadeInUp ftco-animated">
-                <img src={require("../images/bg_1.png")} className="img-fluid" alt=""/>
-              </div>
-  
-            </div>
-          </div>
-        </div></div><div className="owl-item cloned" style={{width: "1349px"}}><div className="slider-item">
-          <div className="overlay"></div>
-          <div className="container">
-            <div className="row slider-text align-items-center" data-scrollax-parent="true">
-  
-              <div className="col-md-6 col-sm-12 order-md-last ftco-animate fadeInUp ftco-animated">
-                <span className="subheading">Crunchy</span>
-                <h1 className="mb-4">Italian Pizza</h1>
-                <p className="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><a href="#" className="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" className="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
-              </div>
-              <div className="col-md-6 ftco-animate fadeInUp ftco-animated">
-                <img src="../images/bg_2.png" className="img-fluid" alt=""/>
               </div>
   
             </div>

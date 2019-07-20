@@ -54,19 +54,19 @@ const Login = ({ isOpen,setShow }) => {
 
 
                         <Input name="cCorreo"
-                            label="cCorreo"
-                            placeholder="cCorreo"
+                            label="Correo"
+                            placeholder="Correo"
                             value={inputs.cCorreo}
-                            type="cCorreo"
+                            type="email"
                             onChange={handleInputChange}
                             required
                         />
 
                         <Input name="cContrasenia"
-                            label="cContrasenia"
-                            placeholder="cContrasenia"
+                            label="Contraseña"
+                            placeholder="Contraseña"
                             value={inputs.cContrasenia}
-                            type="cContrasenia"
+                            type="password"
                             onChange={handleInputChange}
                             required
                         />

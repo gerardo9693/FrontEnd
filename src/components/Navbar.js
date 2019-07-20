@@ -6,9 +6,6 @@ import payload from '../utils/payload';
 function Navbar() {
 const [show,setShow]=useState(false);
 
-
-
-
 	return (
 		<>
 			<nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -29,20 +26,18 @@ const [show,setShow]=useState(false);
                 <Link className="nav-link" to="/">Hola {payload().user.cCorreo}</Link>
               </li>
 			  <li className="nav-item">
-                <Link className="nav-link" to="/logout">Logout</Link>
+                <Link className="nav-link" to="/logout">Salir</Link>
               </li>
               </>
             ):(
               <>
               <li className="nav-item">
-                <Link className="nav-link" to="/signup">Signup</Link>
+                <Link className="nav-link" to="/signup">Registrase</Link>
               </li>
               </>
             )
           }
-							<li className="nav-item"><a href="services.html" className="nav-link">Servicios</a></li>
 							<li className="nav-item"><Link to="/about" className="nav-link">Acerca de</Link></li>
-							<li className="nav-item"><a href="contact.html" className="nav-link">Contacto</a></li>
 							<li className="nav-item"><button className="nav-link"
 								onClick={e => {
 									setShow(!show);

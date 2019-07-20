@@ -15,11 +15,11 @@ function PostPreview({_id,cNombre,cDescripcion,cPrecio}) {
 			</Link>
     <div className="col-lg-10 d-flex ftco-animate fadeInUp ftco-animated">
       <div className="services-wrap d-flex">
-        <a href="#" className="img" style={{backgroundImage:`url(${imagen5})`}}></a>
+        <a href="#" className="img" style={{backgroundImage:`url(https://res.cloudinary.com/dwzdurabf/image/upload/v1563498010/comida_psxwrk.jpg)`}}></a>
         <div className="text p-4">
           <h3>{cNombre}</h3>
           <p>{cDescripcion} </p>
-          <p className="price"><span>{cPrecio}</span> <Link to={`/post/${_id}`} className="ml-2 btn btn-white btn-outline-white">Order</Link></p>
+          <p className="price"><span>{"$ "+cPrecio}</span> <Link to={`/post/${_id}`} className="ml-2 btn btn-white btn-outline-white">Order</Link></p>
         </div>
       </div>
     </div>

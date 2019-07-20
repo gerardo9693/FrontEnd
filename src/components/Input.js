@@ -1,47 +1,53 @@
-// import React from 'react';
-
-// function Input({placeholder,value,onChange,type,required,name,label}){
-//     return(
-//         <div className="control-group">
-//         <div className="form-group floating-label-form-group controls">
-//           <label className="formulario">{label}</label>
-//           <input type={type} className="form-control formulario" placeholder={placeholder} id={name} value={value} onChange={onChange} required={required} data-validation-required-message="Please enter your name."/>
-//           <p className="help-block text-danger"></p>
-//         </div>
-//       </div>
-
-//     );
-// }
-
-// export default Input;
-
-
-
 import React from 'react';
 
+
 function Input({
-	placeholder, 
-	value, 
-	onChange, 
-	type, 
-	name, 
-	label, 
+	placeholder,
+	value,
+	onChange,
+	type,
+	name,
+	label,
 	required
-}){
-	return(
+}) {
+	return (
 		<div className="control-group">
-		<div className="form-group floating-label-form-group controls">
-		  <label>{label}</label>
-		  <input type={type} 
-		  	className="form-control formulario"
-		  	placeholder={placeholder} 
-			name={name}
-			value={value}
-			onChange={onChange}   
-		  	required={required} 
-		  />
+			<div className="form-group floating-label-form-group controls">
+				<label>{label}</label>
+				{type != "select" ?
+					<input type={type}
+						className="form-control formulario"
+						placeholder={placeholder}
+						name={name}
+						value={value}
+						onChange={onChange}
+						required={required}
+					/> :
+					name=="cGenero"?
+					<select type={type}
+						className="form-control formulario"
+						placeholder={placeholder}
+						name={name}
+						value={value}
+						onChange={onChange}
+						required={required}>
+						<option value="M">Masculino</option>
+						<option value="H">Fenenimo</option>
+					</select>:
+					<select type={type}
+					className="form-control formulario"
+					placeholder={placeholder}
+					name={name}
+					value={value}
+					onChange={onChange}
+					required={required}>
+					<option value="1">1</option>
+					<option value="2">2</option>
+						
+				</select>
+				}
+			</div>
 		</div>
-	  </div>
 	);
 
 }
