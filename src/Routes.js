@@ -4,6 +4,7 @@ import Home from './views/Home';
 import Post from './views/Post';
 import Login from './views/Login';
 import Signup from './views/Signup';
+import Comida from './views/Comidas';
 import About from './views/About';
 import Menu from './views/Menu';
 import IsAuthenticated from './utils/IsAuthenticated';
@@ -26,6 +27,7 @@ function Routes() {
     <Route exact path="/logout" component={SecureLogout}/>
     <Route exact path="/signup" component={Signup}/>
     <Route exact path="/login" component={Login}/>
+    <Route exact path="/comida" component={Comida}/>
     </>
   );
 }

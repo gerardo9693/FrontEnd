@@ -22,11 +22,14 @@ const [show,setShow]=useState(false);
 							<li className="nav-item active"><Link to="/" className="nav-link">Inicio</Link></li>
 
 							<li className="nav-item"><Link to="/menu" className="nav-link">Menu</Link></li>
+
+							<li className="nav-item"><Link to="/comida" className="nav-link">Comidas</Link></li>
+
 							{
             payload().isAuthenticated?(
               <>
               <li className="nav-item">
-                <Link className="nav-link" to="/">Hola {payload().user.cCorreo}</Link>
+                <Link className="nav-link" to="/">Bienvenido {payload().user.cNombre}</Link>
               </li>
 			  <li className="nav-item">
                 <Link className="nav-link" to="/logout">Logout</Link>

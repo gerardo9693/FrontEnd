@@ -1,11 +1,11 @@
 import {ApolloClient} from 'apollo-client';
-import {createHttpLink} from 'apollo-link-http';
+import { createUploadLink } from 'apollo-upload-client'
 import {setContext} from 'apollo-link-context';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 
 const API_URL = 'http://localhost:4000/';
 
-const HttpLink=createHttpLink({
+const HttpLink=createUploadLink({
     uri:API_URL
 });
 
