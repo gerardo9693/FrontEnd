@@ -2231,7 +2231,18 @@ $font5:"/fonts/bootstrap/flaticon/font/Flaticon.svg#Flaticon";
 	  }
 
 	  .formulario{
-		  border-color: #000 !important;
+		  background: #ccc !important;
+		  border-color:#000 !important;
 		  color: #000 !important;
+		  border-radius: 5px;
 
+	  }
+	  .EnviarComida{
+		padding: 10px;
+		border-radius: 5px;
+		width: 300px;
+		margin-left: 25%;
+		border-color: #000;
+		font-weight: bold;
+		font-size: x-large;
 	  }

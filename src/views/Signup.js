@@ -5,90 +5,126 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import useForm from '../hooks/userForm';
+import Registro from '../images/Registro.jpg';
+import Footer from '../components/Footer';
 
 const ADD_AUTHOR = gql`
-	mutation CreateAuthor($data:createAuthorInput!){
-		createAuthor(data:$data){
-			_id,
-			cNombre
-		}
-	}
+	mutation crearCliente($data:RegistroUsuario!){
+  	Registro(data:$data){
+    _id,
+    cNombre
+  }
+}
 `
 
 
-function Signup({history}){
-	const [sendSignup,{error}] = useMutation(ADD_AUTHOR)
+function Signup({ history }) {
+	const [sendSignup, { error }] = useMutation(ADD_AUTHOR)
 
-	const catchSubmit = async(fields) => {
-		if(fields.cContrasenia === fields.confirm_password){
+	const catchSubmit = async (fields) => {
+		console.log(fields);
+		if (fields.cContrasenia === fields.confirm_password) {
 			delete fields.confirm_password
-			await sendSignup({variables:{data:{...fields}}})
-			error ? alert("Hubo un error") : history.push('/login')
-		}else{
+			await sendSignup({ variables: { data: { ...fields } } })
+			error ? alert("Hubo un error") : history.push('/')
+		} else {
 			alert("Los Passwords no coinciden")
 		}
 
 	}
-	const {inputs,handleInputChange,handleSubmit} = useForm(catchSubmit)
 
-	return(
+	const { inputs, handleInputChange, handleSubmit } = useForm(catchSubmit)
+
+	return (
 		<>
 			<Navbar />
-			<Header />
+        <Header Nombre="Registrase" imagen={Registro}/>
+			
 			<main className="container">
 				<section className="row">
 					<div className="col-lg-8 col-md-10 mx-auto">
 						<form onSubmit={handleSubmit}>
-							<Input name="first_name"
-							label="First Name"
-							placeholder="First Name"
-							type="text"
-							value={inputs.first_name}
-							onChange={handleInputChange}
-							required 
-							/>
-							<Input name="last_name"
-							label="Last Name"
-							type="text"
-							placeholder="Last Name"
-							value={inputs.last_name}
-							onChange={handleInputChange}
-							required 
-							/>
-							<Input name="email"
-							label="Email"
-							type="email"
-							placeholder="Email"
-							value={inputs.email}
-							onChange={handleInputChange}
-							required 
-							/>
-							<Input name="cContrasenia"
-							label="Password"
-							type="cContrasenia"
-							placeholder="cContrasenia"
-							value={inputs.cContrasenia}
-							onChange={handleInputChange}
-							required 
-							/>
-							<Input name="confirm_password"
-							label="Confirm Password"
-							type="cContrasenia"
-							placeholder="Confirm Password"
-							value={inputs.confirm_password}
-							onChange={handleInputChange}
-							required 
+							<Input name="cNombre"
+								label="Nombre"
+								placeholder="Nombre.."
+								type="text"
+								value={inputs.cNombre}
+								onChange={handleInputChange}
+								required
 							/>
 
-							<button type="submit" className="btn btn-primary">Send</button>
+							<Input name="cApellidoP"
+								label="Apellido Paterno"
+								type="text"
+								placeholder="Apellido Paterno..."
+								value={inputs.cApellidoP}
+								onChange={handleInputChange}
+								required
+							/>
+
+							<Input name="cApellidoM"
+								label="Apellido Materno"
+								type="text"
+								placeholder="Apellido Materno..."
+								value={inputs.cApellidoM}
+								onChange={handleInputChange}
+								required
+							/>
+							
+							<Input name="cGenero"
+								label="Genero"
+								type="select"
+								placeholder="Genero..."
+								value={inputs.cGenero}
+								onChange={handleInputChange}
+								required
+							/>
+
+							<Input name="cTelefono"
+								label="Telefono"
+								type="tel"
+								placeholder="Telefono..."
+								value={inputs.cTelefono}
+								onChange={handleInputChange}
+								required
+							/>
+
+							<Input name="cCorreo"
+								label="Correo"
+								type="email"
+								placeholder="Correo..."
+								value={inputs.cCorreo}
+								onChange={handleInputChange}
+								required
+							/>
+
+							<Input name="cContrasenia"
+								label="Contraseña"
+								type="Password"
+								placeholder="Contraseña"
+								value={inputs.cContrasenia}
+								onChange={handleInputChange}
+								required
+							/>
+
+							<Input name="confirm_password"
+								label="Confirmar contraseña"
+								type="Password"
+								placeholder="Confirmar contraseña"
+								value={inputs.confirm_password}
+								onChange={handleInputChange}
+								required
+							/>
+
+							<button type="submit" className="btn btn-primary EnviarComida">Registrar</button>
 
 						</form>
 					</div>
 				</section>
 			</main>
+			<Footer/>
 		</>
 	)
-
 }
 
 export default Signup;
